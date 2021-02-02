@@ -15,5 +15,9 @@ namespace Domain
         public int Depth { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+
+        //  Binding StatusInformation
+        public StatusInformation Status { get; set; }
+        public Guid StatusId { get; set; }
     }
 }

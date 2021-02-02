@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210201222544_BindRigToAssetsTable")]
+    partial class BindRigToAssetsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,48 +138,6 @@ namespace Persistence.Migrations
                     b.ToTable("RigOEMs");
                 });
 
-            modelBuilder.Entity("Domain.RigWellOperatorRecord", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BOP")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(7)")
-                        .HasMaxLength(7);
-
-                    b.Property<string>("LMRP")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(7)")
-                        .HasMaxLength(7);
-
-                    b.Property<DateTime>("LatchDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("OperatorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("RigId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UnlatchDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("WellId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OperatorId");
-
-                    b.HasIndex("RigId");
-
-                    b.HasIndex("WellId");
-
-                    b.ToTable("RigWellOperatorRecords");
-                });
-
             modelBuilder.Entity("Domain.StatusInformation", b =>
                 {
                     b.Property<Guid>("Id")
@@ -223,12 +183,7 @@ namespace Persistence.Migrations
                     b.Property<string>("OCSG")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("StatusId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("StatusId");
 
                     b.ToTable("Wells");
                 });
@@ -253,36 +208,6 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Rig", "Rig")
                         .WithMany()
                         .HasForeignKey("RigId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.RigWellOperatorRecord", b =>
-                {
-                    b.HasOne("Domain.RigOperator", "Operator")
-                        .WithMany()
-                        .HasForeignKey("OperatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Rig", "Rig")
-                        .WithMany()
-                        .HasForeignKey("RigId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Well", "Well")
-                        .WithMany()
-                        .HasForeignKey("WellId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Domain.Well", b =>
-                {
-                    b.HasOne("Domain.StatusInformation", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

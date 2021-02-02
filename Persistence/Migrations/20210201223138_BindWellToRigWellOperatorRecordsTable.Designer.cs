@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210201223138_BindWellToRigWellOperatorRecordsTable")]
+    partial class BindWellToRigWellOperatorRecordsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,9 +157,6 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("LatchDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("OperatorId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("RigId")
                         .HasColumnType("uniqueidentifier");
 
@@ -168,8 +167,6 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OperatorId");
 
                     b.HasIndex("RigId");
 
@@ -259,12 +256,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.RigWellOperatorRecord", b =>
                 {
-                    b.HasOne("Domain.RigOperator", "Operator")
-                        .WithMany()
-                        .HasForeignKey("OperatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Rig", "Rig")
                         .WithMany()
                         .HasForeignKey("RigId")

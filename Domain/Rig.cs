@@ -28,5 +28,9 @@ namespace Domain
         [Required]
         [StringLength(10)]
         public string shipIMO { get; set; }
+
+        //  Binding Contractors
+        public RigContractor Contractor { get; set; }
+        public Guid ContractorId { get; set; }
     }
 }

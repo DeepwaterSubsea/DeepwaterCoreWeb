@@ -16,6 +16,7 @@ namespace Persistence
         public DbSet<RigAsset> RigAssets { get; set; }
         public DbSet<Well> Wells { get; set; }
         public DbSet<StatusInformation> StatusInformation { get; set; }
+        public DbSet<RigWellOperatorRecord> RigWellOperatorRecords { get; set; }
     }
 
 }
