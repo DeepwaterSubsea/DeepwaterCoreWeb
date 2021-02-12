@@ -22,7 +22,7 @@ namespace Application.Rigs
 
             public async Task<List<Rig>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Rigs.ToListAsync(cancellationToken: cancellationToken);
+                return await _context.Rigs.Include(r => r.Contractor).ToListAsync(cancellationToken: cancellationToken);
             }
         }
     }

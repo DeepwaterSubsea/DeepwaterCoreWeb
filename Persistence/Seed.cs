@@ -9,20 +9,20 @@ namespace Persistence
     public class Seed
     {
         //  Contractors
-        private const string ContractorChevron = "CHEVRON", ContractorDiamond = "DIAMOND", ContractorPacific = "PACIFIC", ContractorSeadril = "SEADRIL", 
+        private const string ContractorChevron = "CHEVRON", ContractorDiamond = "DIAMOND", ContractorPacific = "PACIFIC", ContractorSeadril = "SEADRIL",
             ContractorTransocean = "TRANSOCEAN", ContractorValaris = "VALARIS", ContractorNabors = "NABORS", ContractorNoble = "NOBLE";
 
         //  OEMs
         private const string OEMHydril = "HYDRIL", OEMCameron = "CAMERON", OEMNOV = "NOV";
 
         //  Operators
-        private const string OperatorAnadarko = "ANADARKO", OperatorBeachEnergy = "BEACH ENERGY", OperatorBeacon = "BEACON", OperatorBHP = "BHP", OperatorBP = "BP", 
-            OperatorChevron = "CHEVRON", OperatorEnven = "ENVEN", OperatorEquinor = "EQUINOR", OperatorExxon = "EXXON", OperatorHess = "HESS", 
-            OperatorKosmos = "KOSMOS", OperatorLLog = "LLOG", OperatorMurphy = "MURPHY", OperatorOxy = "OXY", OperatorPetroBras = "PETROBRAS", 
+        private const string OperatorAnadarko = "ANADARKO", OperatorBeachEnergy = "BEACH ENERGY", OperatorBeacon = "BEACON", OperatorBHP = "BHP", OperatorBP = "BP",
+            OperatorChevron = "CHEVRON", OperatorEnven = "ENVEN", OperatorEquinor = "EQUINOR", OperatorExxon = "EXXON", OperatorHess = "HESS",
+            OperatorKosmos = "KOSMOS", OperatorLLog = "LLOG", OperatorMurphy = "MURPHY", OperatorOxy = "OXY", OperatorPetroBras = "PETROBRAS",
             OperatorWoodside = "WOODSIDE", OperatorTotal = "TOTAL", OperatorTalos = "TALOS", OperatorShell = "SHELL";
 
         //  Rigs
-        private const string Rig8503 = "8503", RigBigFoot = "Bigfoot", RigBlackHawk = "BlackHawk", RigBlackHornet = "BlackHornet", RigBlackLion = "BlackLion", RigBlackRhino = "BlackRhino", 
+        private const string Rig8503 = "8503", RigBigFoot = "Bigfoot", RigBlackHawk = "BlackHawk", RigBlackHornet = "BlackHornet", RigBlackLion = "BlackLion", RigBlackRhino = "BlackRhino",
             RigDeepwaterAsgard = "Deepwater Asgard", RigDeepwaterConqueror = "Deepwater Conqueror", RigDeepwaterInvictus = "Deepwater Invictus", RigDiscoverInspiration = "Discover Inspiration",
             RigOceanApex = "Ocean Apex", RigOceanCourage = "Ocean Courage", RigOceanOnyx = "Ocean Onyx", RigOceanValiant = "Ocean Valiant", RigOceanValor = "Ocean Valor",
             RigPacificKhamsin = "Pacic Khamsin", RigPacificSharav = "Pacific Sharav", RigDS15 = "Valaris DS-15 (Renaissance)", RigDS18 = "Valaris DS-18 (Relentless)",
@@ -113,10 +113,6 @@ namespace Persistence
                     new RigOperator
                     {
                         Name = OperatorBeacon
-                    },
-                    new RigOperator
-                    {
-                        Name = OperatorAnadarko
                     },
                     new RigOperator
                     {
