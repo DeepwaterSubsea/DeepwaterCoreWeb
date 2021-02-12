@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
+using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.RigOperators
+namespace Application.Rigs
 {
-    public class Delete
+    public class CreateRig
     {
         public class Command : IRequest
         {
-            public Guid Id { get; set; }
+            public Rig Rig { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -25,13 +25,7 @@ namespace Application.RigOperators
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var rigOperator = await _context.RigOperators.FindAsync(request.Id);
-
-                if (rigOperator == null)
-                    throw new Exception("Cannot find the record");
-
-                _context.RigOperators.Remove(rigOperator);
-
+                _context.Rigs.Add(request.Rig);
                 var success = await _context.SaveChangesAsync(cancellationToken) > 0;
 
                 if (success) return Unit.Value;

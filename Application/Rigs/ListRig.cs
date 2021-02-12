@@ -6,13 +6,13 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.RigAssets
+namespace Application.Rigs
 {
-    public class List
+    public class ListRig
     {
-        public class Query : IRequest<List<RigAsset>> { }
+        public class Query : IRequest<List<Rig>> { }
 
-        public class Handler : IRequestHandler<Query, List<RigAsset>>
+        public class Handler : IRequestHandler<Query, List<Rig>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -20,9 +20,9 @@ namespace Application.RigAssets
                 _context = context;
             }
 
-            public async Task<List<RigAsset>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<List<Rig>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.RigAssets.ToListAsync();
+                return await _context.Rigs.ToListAsync(cancellationToken: cancellationToken);
             }
         }
     }

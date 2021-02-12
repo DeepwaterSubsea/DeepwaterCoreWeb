@@ -5,16 +5,16 @@ using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.RigOperators
+namespace Application.RigAssets
 {
-    public class Details
+    public class DetailsRigAsset
     {
-        public class Query : IRequest<RigOperator>
+        public class Query : IRequest<RigAsset>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, RigOperator>
+        public class Handler : IRequestHandler<Query, RigAsset>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -22,9 +22,9 @@ namespace Application.RigOperators
                 _context = context;
             }
 
-            public async Task<RigOperator> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<RigAsset> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.RigOperators.FindAsync(request.Id);
+                return await _context.RigAssets.FindAsync(request.Id);
             }
         }
     }

@@ -8,7 +8,7 @@ using Persistence;
 
 namespace Application.RigOperators
 {
-    public class List
+    public class ListRigOperator
     {
         public class Query : IRequest<List<RigOperator>> { }
 

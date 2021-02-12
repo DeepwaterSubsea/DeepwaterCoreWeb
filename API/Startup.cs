@@ -1,3 +1,5 @@
+using API.Extensions;
+using Application.Core;
 using Application.RigOperators;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -22,23 +24,9 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(opt =>
-            {
-                opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
-            services.AddCors(option =>
-            {
-                option
-                    .AddPolicy("CorsPolicy", policy =>
-                    {
-                        policy
-                            .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .WithOrigins("http://localhost:3000");
-                    });
-            });
-            services.AddMediatR(typeof(List.Handler).Assembly);
+
             services.AddControllers();
+            services.AddApplicationServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

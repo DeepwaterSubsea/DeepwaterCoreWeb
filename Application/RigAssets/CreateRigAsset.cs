@@ -1,21 +1,17 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.RigOperators
+namespace Application.RigAssets
 {
-    public class Create
+    public class CreateRigAsset
     {
         public class Command : IRequest
         {
-            public Guid Id { get; set; }
-
-            [Required]
-            public string Name { get; set; }
+            public RigAsset RigAsset { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -28,13 +24,7 @@ namespace Application.RigOperators
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var rigOperator = new RigOperator
-                {
-                    Id = request.Id,
-                    Name = request.Name
-                };
-
-                _context.RigOperators.Add(rigOperator);
+                _context.RigAssets.Add(request.RigAsset);
                 var success = await _context.SaveChangesAsync(cancellationToken) > 0;
 
                 if (success) return Unit.Value;
